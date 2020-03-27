@@ -1,5 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Installations
+
+git clone https://github.com/adipatiarya/telkomsel-client.git
+cd telkomsel-client
+npm install
 
 ## Available Scripts
 
