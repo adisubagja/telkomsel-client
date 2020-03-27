@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Home from './pages/Home';
+import * as actions from './actions';
+import {connect} from 'react-redux';
+import Modal from './components/Modal'
+import { BrowserRouter, Route , Switch} from 'react-router-dom';
+import Login from './pages/Login';
+import Tembak from './pages/Tembak';
+import Profile from './pages/Profile';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+   
+    
+    render () {
+        
+        return (
+           
+            <BrowserRouter> 
+           
+            <Switch>
+                <Route path="/" exact component={Home}/>
+                <Route path="/tembak" exact component={Tembak}/>
+                <Route path="/login" exact component={Login}/>
+                <Route path="/profile" exact component={Profile}/>
+             </Switch>
+          
+             <Modal open={this.props.beli.open} handleClose={this.props.handleClose} data={this.props.beli.payload}></Modal>
+         </BrowserRouter>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+    return {
+        beli:state.buy,
+        auth:state.auth
+    }
+}
+
+export default connect(mapStateToProps, actions)(App);
